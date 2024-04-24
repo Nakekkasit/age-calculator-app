@@ -1,13 +1,195 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ### Primary
+
+- Purple: hsl(259, 100%, 65%)
+- Light red: hsl(0, 100%, 67%)
+
+### Neutral
+
+- White: hsl(0, 0%, 100%)
+- Off white: hsl(0, 0%, 94%)
+- Light grey: hsl(0, 0%, 86%)
+- Smokey grey: hsl(0, 1%, 44%)
+- Off black: hsl(0, 0%, 8%)
+
+## Typography
+
+### Body Copy
+
+- Font size (inputs): 32px */
+
+:root {
+  --color-primary-purple: hsl(259, 100%, 65%);
+  --color-primary-red: hsl(0, 100%, 67%);
+
+  --color-white: hsl(0, 0%, 100%);
+  --color-off-white: hsl(0, 0%, 94%);
+  --color-light-grey: hsl(0, 0%, 86%);
+  --color-smokey-grey: hsl(0, 1%, 44%);
+  --color-off-black: hsl(0, 0%, 8%);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 3.2rem;
+  font-weight: 400;
+  /* line-height: 1.6; */
+  color: var(--color-off-black);
+  background-color: var(--color-off-white);
+}
+
+.app {
+  max-width: 100rem;
+  margin: 4rem auto;
+  background-color: var(--color-white);
+  padding: 5.6rem;
+  border-radius: 2rem 2rem 20% 2rem;
+}
+
+.form {
+  position: relative;
+}
+
+.form__data {
+  display: flex;
+}
+
+.form__info:not(:last-child) {
+  margin-right: 3rem;
+}
+
+.form__label {
+  display: block;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-smokey-grey);
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.form__input {
+  position: relative;
+  height: 6rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-light-grey);
+  font-size: 3.2rem;
+  color: var(--color-off-black);
+  font-weight: 800;
+  padding: 1.2rem 2.4rem;
+  width: 18rem;
+}
+
+.form__input::placeholder {
+  color: var(--color-light-grey);
+}
+
+.form__input:focus {
+  outline: none;
+  border-color: var(--color-primary-purple);
+}
+
+.errorMessage {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  color: var(--color-primary-red);
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.errorMessage--visible {
+  visibility: visible;
+}
+
+.errorMessage--hidden {
+  visibility: hidden;
+}
+
+.form__info {
+  position: relative;
+}
+
+.error-empty {
+  display: block;
+  position: absolute;
+  top: 105%;
+  left: 0;
+  color: var(--color-primary-red);
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.error-empty--visible {
+  visibility: visible;
+}
+
+.error-empty--hidden {
+  visibility: hidden;
+}
+
+.form__info__error .form__label {
+  color: var(--color-primary-red);
+}
+
+.form__info__error .form__input {
+  border-color: var(--color-primary-red);
+}
+
+.btn-sec {
+  display: flex;
+}
+
+.line {
+  height: 1px;
+  background-color: var(--color-light-grey);
+  align-self: center;
+  flex: 1;
+}
+
+.btn {
+  width: 9.6rem;
+  height: 9.6rem;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-primary-purple);
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--color-off-black);
+}
+
+.result {
+  display: flex;
+}
+
+.result__output {
+  font-size: 10rem;
+  font-weight: 800;
+  margin-right: 2rem;
+  font-style: italic;
+  letter-spacing: 5px;
+  color: var(--color-primary-purple);
+}
+
+.result__text {
+  font-size: 10rem;
+  font-weight: 800;
+  font-style: italic;
 }

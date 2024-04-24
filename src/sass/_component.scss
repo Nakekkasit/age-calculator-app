@@ -1,0 +1,133 @@
+.form {
+  position: relative;
+
+  &__data {
+    display: flex;
+  }
+
+  &__info {
+    position: relative;
+
+    &:not(:last-child) {
+      margin-right: 3rem;
+    }
+
+    &__error {
+      .form__label {
+        color: var(--color-primary-red);
+      }
+      .form__input {
+        border-color: var(--color-primary-red);
+      }
+    }
+  }
+
+  &__label {
+    display: block;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--color-smokey-grey);
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+  }
+
+  &__input {
+    position: relative;
+    height: 6rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-light-grey);
+    font-size: 3.2rem;
+    color: var(--color-off-black);
+    font-weight: 800;
+    padding: 1.2rem 2.4rem;
+    width: 18rem;
+
+    &::placeholder {
+      color: var(--color-light-grey);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary-purple);
+    }
+  }
+}
+
+.error-message {
+  position: absolute;
+  top: 105%;
+  left: 0;
+  color: var(--color-primary-red);
+  font-size: 1.2rem;
+  font-style: italic;
+
+  &--visible {
+    visibility: visible;
+  }
+
+  &--hidden {
+    visibility: hidden;
+  }
+}
+
+.error-empty {
+  display: block;
+  position: absolute;
+  top: 105%;
+  left: 0;
+  color: var(--color-primary-red);
+  font-size: 1.2rem;
+  font-style: italic;
+
+  &--visible {
+    visibility: visible;
+  }
+
+  &--hidden {
+    visibility: hidden;
+  }
+}
+
+.btn-sec {
+  display: flex;
+}
+
+.line {
+  height: 1px;
+  background-color: var(--color-light-grey);
+  align-self: center;
+  flex: 1;
+}
+
+.btn {
+  width: 9.6rem;
+  height: 9.6rem;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-primary-purple);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-off-black);
+  }
+}
+
+.result {
+  display: flex;
+
+  &__output {
+    font-size: 10rem;
+    font-weight: 800;
+    margin-right: 2rem;
+    font-style: italic;
+    letter-spacing: 5px;
+    color: var(--color-primary-purple);
+  }
+
+  &__text {
+    font-size: 10rem;
+    font-weight: 800;
+    font-style: italic;
+  }
+}

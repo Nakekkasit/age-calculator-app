@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import iconArrow from "./images/icon-arrow.svg";
-
-// import { ReactComponent as IconArrow } from "./images/icon-arrow.svg";
 
 export default function App() {
   const [age, setAge] = useState({
@@ -47,7 +45,6 @@ function Form({ calAge }) {
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [submit, setSubmit] = useState(false);
-  const [inputDay, setInputDay] = useState("");
 
   const initialError = {
     date: false,
@@ -57,20 +54,7 @@ function Form({ calAge }) {
   const [error, setError] = useState(initialError);
 
   // Define the maximum number of days for each month
-  const maxDaysInMonth = [
-    31, // January
-    28, // February (assuming non-leap year by default)
-    31, // March
-    30, // April
-    31, // May
-    30, // June
-    31, // July
-    31, // August
-    30, // September
-    31, // October
-    30, // November
-    31, // December
-  ];
+  const maxDaysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
   // Adjust maxDaysInMonth for February based on leap year
   if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
@@ -83,14 +67,13 @@ function Form({ calAge }) {
     const isInput = day && month && year;
     if (invalid || !isInput) return;
     setSubmit(true);
-    setInputDay(day);
     calAge(year, month, day);
   }
 
   function handleChangeDate(e) {
     const value = e.target.value;
     setDay((day) => value);
-    if (submit) setInputDay((inputDay) => value);
+    // if (submit) setInputDay((inputDay) => value);
     // input validation otherwise shows error message
     /* 1. be a number except ""
          2. > 0
@@ -110,7 +93,6 @@ function Form({ calAge }) {
   function handleChangeMonth(e) {
     const value = e.target.value;
     setMonth(value);
-
     setError((prevError) => ({
       ...prevError,
       month:
@@ -139,7 +121,7 @@ function Form({ calAge }) {
       <div className="form__data">
         <div
           className={`form__info form__info--date ${
-            error.date || (submit && !inputDay) ? "form__info__error" : ""
+            error.date || (submit && !day) ? "form__info__error" : ""
           }`}
         >
           <label className="form__label">Day</label>
@@ -151,17 +133,15 @@ function Form({ calAge }) {
             onChange={handleChangeDate}
           ></input>
           <p
-            className={`errorMessage ${
-              error.date ? "errorMessage--visible" : "errorMessage--hidden"
+            className={`error-message ${
+              error.date ? "error-message--visible" : "error-message--hidden"
             }`}
           >
             Must be a valid day
           </p>
           <p
             className={`error-empty ${
-              submit && !inputDay
-                ? "error-empty--visible"
-                : "error-empty--hidden"
+              submit && !day ? "error-empty--visible" : "error-empty--hidden"
             }`}
           >
             This field is required
@@ -169,7 +149,7 @@ function Form({ calAge }) {
         </div>
         <div
           className={`form__info form__info--month ${
-            error.month ? "form__info__error" : ""
+            error.month || (submit && !month) ? "form__info__error" : ""
           }`}
         >
           <label className="form__label">Month</label>
@@ -181,16 +161,23 @@ function Form({ calAge }) {
             onChange={handleChangeMonth}
           ></input>
           <p
-            className={`errorMessage ${
-              error.month ? "errorMessage--visible" : "errorMessage--hidden"
+            className={`error-message ${
+              error.month ? "error-message--visible" : "error-message--hidden"
             }`}
           >
             Must be a valid month
           </p>
+          <p
+            className={`error-empty ${
+              submit && !month ? "error-empty--visible" : "error-empty--hidden"
+            }`}
+          >
+            This field is required
+          </p>
         </div>
         <div
           className={`form__info form__info--year ${
-            error.year ? "form__info__error" : ""
+            error.year || (submit && !year) ? "form__info__error" : ""
           }`}
         >
           <label className="form__label">Year</label>
@@ -202,11 +189,18 @@ function Form({ calAge }) {
             onChange={handleChangeYear}
           ></input>
           <p
-            className={`errorMessage ${
-              error.year ? "errorMessage--visible" : "errorMessage--hidden"
+            className={`error-message ${
+              error.year ? "error-message--visible" : "error-message--hidden"
             }`}
           >
             Must be a valid year
+          </p>
+          <p
+            className={`error-empty ${
+              submit && !year ? "error-empty--visible" : "error-empty--hidden"
+            }`}
+          >
+            This field is required
           </p>
         </div>
       </div>
@@ -219,6 +213,37 @@ function Form({ calAge }) {
     </form>
   );
 }
+
+// function Results({ age }) {
+//   return (
+//     <div className="results">
+//       <div className="result">
+//         <AnimatedNumber
+//           className="result__output result__output--year"
+//           value={age.years || 0}
+//           formatValue={(value) => value.toFixed(0)}
+//         />
+//         <span className="result__text">years</span>
+//       </div>
+//       <div className="result">
+//         <AnimatedNumber
+//           className="result__output result__output--month"
+//           value={age.months || 0}
+//           formatValue={(value) => value.toFixed(0)}
+//         />
+//         <span className="result__text">months</span>
+//       </div>
+//       <div className="result">
+//         <AnimatedNumber
+//           className="result__output result__output--day"
+//           value={age.days || 0}
+//           formatValue={(value) => value.toFixed(0)}
+//         />
+//         <span className="result__text">days</span>
+//       </div>
+//     </div>
+//   );
+// }
 
 function Results({ age }) {
   return (
